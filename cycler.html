@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cycler Page</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: orange;
+        }
+
+        .flex-container {
+            background-color: white;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+
+            div {
+                width: 33%;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <h1> dheeraj cycle </h1>
+
+
+    <div class="flex-container" id="target">
+
+        <div class="cycler">row item 1</div>
+        <div class="cycler">row item 2</div>
+        <div class="cycler">row item 3</div>
+    </div>
+    <div class="container">
+        <label for="enter the input">Enter the input</label>
+        <input type="text" id="cycle" value=" ">
+    </div>
+    <button onclick="makeNewDiv()">Add value</button>
+    <button type="button" class="btn btn-success" onclick="get()">get value</button>
+    <button type="button" class="btn btn-success" onclick="spin()">spin value</button>
+    <button type="button" class="btn btn-success" onclick="swap()">swap value</button>
+
+
+
+</body>
+<script>
+    function makeNewDiv() {
+
+        let element = document.createElement("div")
+        let textname = document.getElementById("cycle").value
+        element.innerHTML = textname
+        element.className = "cycler"
+        var container = document.getElementById("target")
+        container.appendChild(element)
+
+    }
+    function get() {
+        var cyclerItems = document.getElementsByClassName("cycler")
+        var len = cyclerItems.length
+        if (len > 0) {
+            cyclerItems[len - 1].remove();
+        }
+    }
+    function spin() {
+       
+        let cyclerItems = document.getElementsByClassName("cycler")
+        var len = cyclerItems.length
+                if(cyclerItems.length > 1) {
+                    removedItem = cyclerItems[len-1]
+                    cyclerItems[len-1].remove()
+                    let container = document.getElementById("target")
+                    container.insertBefore(removedItem, container.firstChild)
+
+    }
+}
+         function swap(){
+            let cyclerItems = document.getElementsByClassName("cycler")
+            let num1=Math.floor(Math.random()*(cyclerItems.length))
+            let num2=Math.floor(Math.random()*(cyclerItems.length))
+            t1=cyclerItems[num1].innerHTML
+            t2 =cyclerItems[num2].innerHTML
+            cyclerItems[num1].innerHTML=t1
+            cyclerItems[num2].innerHTML=t2
+         }
+
+
+</script>
+
+</html>
